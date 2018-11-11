@@ -57,7 +57,7 @@ _posts에는 실제로 포스트할 포스트를 저장하는 반면, _drafts에
 상단의 메타정보를 포함할 수 있음.
 더욱 편리하게 작성하기 위해 [Typora](https://typora.io/)를 추천
 
-```tex
+```yaml
 title : post의 title이 될 제목
 data : 작성 할 날짜
 categories : 해당 포스트가 포함되는 카테고리를 분류(구분자는 Space)
@@ -93,6 +93,8 @@ css를 오버라이드 하기 위한 경로는 : /assets/css/main.scss
 	font-size: 16px;
 }
 ```
+
+
 
 
 
