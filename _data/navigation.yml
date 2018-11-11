@@ -1,7 +1,5 @@
 main:
-  - title: "Archive"
+  - title: "Year"
     url: /year-archive/
-  - title: "tag"
-    url: /tags/
   - title: "Category"
     url: /categories/
