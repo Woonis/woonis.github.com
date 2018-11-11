@@ -29,7 +29,7 @@ Image를 로컬에 저장하기 위한 경로는 : /assets/images
 
 ```yaml
 author:
-  name             : "Suji Wooni, Wooni"
+  name             : "Suji Woo, Wooni"
   avatar           : "/assets/images/Wooni.jpeg"
   bio              : "Hello :) This is Wooni. <br /> I'm developer at Coupang."
   location         : "Seoul, Korea"
