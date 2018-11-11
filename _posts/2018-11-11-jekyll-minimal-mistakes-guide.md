@@ -72,7 +72,7 @@ categories : 해당 포스트가 포함되는 카테고리를 분류(구분자�
 
 css를 오버라이드 하기 위한 경로는 : /assets/css/main.scss
 
-```scss
+```
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
 
