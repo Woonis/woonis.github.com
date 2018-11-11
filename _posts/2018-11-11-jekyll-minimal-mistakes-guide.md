@@ -100,7 +100,7 @@ css를 오버라이드 하기 위한 경로는 : /assets/css/main.scss
 
 # 참조
 
-Minimal Mistakes - [https://mmistakes.github.io/minimal-mistakes/](https://github.com/mmistakes/minimal-mistakes/blob/master/assets/css/main.scss)
+Minimal Mistakes - [https://mmistakes.github.io/minimal-mistakes/](https://github.com/mmistakes/minimal-mistakes)
 
 
 
