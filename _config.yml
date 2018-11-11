@@ -101,7 +101,7 @@ analytics:
 # Site Author
 author:
   name             : "Suji Wooni, Wooni"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/Wooni.jpeg"
   bio              : "Hello :) This is Wooni. <br /> I'm developer at Coupang."
   location         : "Seoul, Korea"
   email            : "sjchu91@gmail.com"
