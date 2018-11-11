@@ -7,6 +7,14 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
+html {
+	font-size: 16px !important;
+}
+
+h1 {
+	margin-top: 2em;
+}
+
 .page {
 	padding-right: 0px !important;
 }
