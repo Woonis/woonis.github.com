@@ -1,7 +1,7 @@
 ---
 title: "Jekyll의 Minimal Mistakes Theme 적용 Guide"
 date: 2018-11-11 08:10:00 -0400
-categories: Minimal-Mistakes Guide
+categories: Minimal-Mistakes Guide Developer
 ---
 
 # GitHub io Minimal Mistakes 적용하기

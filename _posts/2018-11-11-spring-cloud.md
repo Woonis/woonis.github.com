@@ -1,7 +1,7 @@
 ---
 title: "Mastering Spring Cloud"
 date: 2018-11-11 15:34:00 -0400
-categories: Spring SpringCloud
+categories: Spring SpringCloud Developer
 ---
 
 # 00 서론
