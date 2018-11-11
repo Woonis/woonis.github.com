@@ -72,7 +72,7 @@ categories : 해당 포스트가 포함되는 카테고리를 분류(구분자�
 
 css를 오버라이드 하기 위한 경로는 : /assets/css/main.scss
 
-```
+```scss
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
 
@@ -83,20 +83,16 @@ css를 오버라이드 하기 위한 경로는 : /assets/css/main.scss
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-# Page의 padding을 0으로 바꿈
+// Page의 padding을 0으로 바꿈
 .page {
 	padding-right: 0px !important;
 } 
 
-# font-size change
+// font-size change
 .page__content {
 	font-size: 16px;
 }
 ```
-
-
-
-
 
 
 
