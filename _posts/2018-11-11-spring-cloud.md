@@ -16,8 +16,6 @@ categories: Spring SpringCloud Developer
 
 [TOC]
 
-
-
 # 01 마이크로 서비스 소개
 
 ## 마이크로서비스의 장점
