@@ -99,7 +99,7 @@ categories: Spring SpringCloud
 
 # 02 마이크로서비스를 위한 스프링
 
-### 스프링 부트 소개
+## 스프링 부트 소개
 
 스프링 부트란? 스프링 프레임워크를 더욱더 간편하고 쓸수 있도록 이니셜라이즈를 제공하며, 스프링 클라우드 내의 디펜던시와 버젼관리를 편하도록 도와줌. 독립 실행형 어플리케이션을 jave -jar로 실행함.
 
@@ -108,7 +108,7 @@ categories: Spring SpringCloud
 
 
 
-### 왜 마이크로 서비스에 적합한 것인가?
+## 왜 마이크로 서비스에 적합한 것인가?
 
 기존의 스프링 컨피규레이션은 웹 컨테이너를 포함하는 대신 WAR 형태로 웹 컨테이너에 배포를 함.
 
@@ -116,7 +116,7 @@ categories: Spring SpringCloud
 
 
 
-### 스프링 부트를 이용해 어플리케이션 개발하기
+## 스프링 부트를 이용해 어플리케이션 개발하기
 
 - Initialize 를 이용
 - 목적에 맞는 각 starter를 추가해서 내부의 디펜던시를 사용.
@@ -125,7 +125,7 @@ categories: Spring SpringCloud
 
 
 
-### 컨피규레이션 파일 사용자 정의하기
+## 컨피규레이션 파일 사용자 정의하기
 
 - spring.config.name / spring.config.location 설정을 오버라이드 함으로써 자신의 패스내에 다른 이름으로 존재하는 설정파일 로드가 가능
 - 정의한 설정파일은 @Value 또는 @ConfigurationProperties를 통해 주입 가능
@@ -145,7 +145,7 @@ Public Class Config{
 
 
 
-### RESTful 웹서비스 생성하기
+## RESTful 웹서비스 생성하기
 
 - 기존의 @RequestMapping(method.Method.GET or POST or DELETE or PUT)을 각 분리된 어노테이션으로 사용가능(@GetMapping, @PostMapping, @DeleteMapping, @PutMapping)
 - 바디가 리턴되는 컨트롤러에 대해서 기존의 @Controller&@ResponseBody대신 @RestController사용 가능.
@@ -155,7 +155,7 @@ Public Class Config{
 
 
 
-### API 문서화
+## API 문서화
 
 스웨거란? RESTful API를 설계하고 빌드하고 문서화 하기위해 가장 많이 사용되는 도구.
 
@@ -165,19 +165,19 @@ Public Class Config{
 
 
 
-### 스프링 부트 액추에이터의 기능
+## 스프링 부트 액추에이터의 기능
 
 스프링부트 액추에이터란? 모니터링과 메트릭 수집을 위해 사용하는 디펜던시.
 
 
 
-### 상태정보
+## 상태정보
 
 디스크의 사용량, 메일서비스 등을 모니터 할 수 있음.
 
 
 
-### 매트릭스
+## 매트릭스
 
 힙과 힙이 아닌 메모리의 사용량을 알 수 있음. CounterService와 GaugeService를 통해서 메트릭 추가 가능.
 
@@ -199,7 +199,7 @@ public class PersonCounterService{
 
 
 
-### 어플리케이션 빌드하기
+## 어플리케이션 빌드하기
 
 내장 데이터 베이스는 운영용이 아닌 개발 또는 단위테스트용.
 
@@ -207,7 +207,7 @@ public class PersonCounterService{
 
 
 
-### 요약
+## 요약
 
 스프링부트를 사용해서 어떻게 프로젝트를 셋팅하고 배포할 수 있는지에 대한 팁을 공유함.
 
@@ -217,7 +217,7 @@ public class PersonCounterService{
 
 # 03 스프링 클라우드 개요
 
-### 기본부터 시작하기
+## 기본부터 시작하기
 
 스프링 클라우드는 원격 서버에서 컨피규레이션을 가저옴.
 부트스트랩 컨텍스는 bootstrap.yml를 사용하며 일반적인 어플리케이션의 부모임.
@@ -227,14 +227,14 @@ public class PersonCounterService{
 
 
 
-### 넷플릭스 OSS
+## 넷플릭스 OSS
 
 마이크로 서비스를 처음으로 성공적으로 도입한 회사.
 스프링 클라우드를 기본으로 유레카, 히스트릭스, 리본, 주울 등을 통합함.
 
 
 
-### 유레카를 사용한 서비스 디스커버리
+## 유레카를 사용한 서비스 디스커버리
 
 * spring-cloud-stater-eureka 스타터를 사용.
 * 클라이언트와 서버를 구분함.
@@ -243,14 +243,14 @@ public class PersonCounterService{
 
 
 
-### Zuul을 사용한 라우팅
+## Zuul을 사용한 라우팅
 
 - JVM 기반의 라우터이며, 서버측의 부하 분산이나 일부 필터링을 수행.
 - Spring-cloud-starter-zuul을 사용.
 
 
 
-### Ribbon을 사용한 부하 분산
+## Ribbon을 사용한 부하 분산
 
 - TCP, UDP, HTTP 등 가장 유명한 프로토콜을 지원.
 - 비동기 또는 리엑티브 모델도 지원함.
@@ -258,27 +258,27 @@ public class PersonCounterService{
 
 
 
-### 히스트릭스를 사용해 대기 시간 및 장애 내성 다루기
+## 히스트릭스를 사용해 대기 시간 및 장애 내성 다루기
 
 - 서킷브레이커 패턴을 구현함
 - spring-cloud-starter-hystrix를 사용
 
 
 
-### 디스커버리와 분산 컨피규레이션
+## 디스커버리와 분산 컨피규레이션
 
 Vault란? 토큰이나 패스워드, 자격 증명을 관리할 수 있는 해시코프에서 만든 오픈 소스 도구.
 
 
 
-### 아파치 주키퍼
+## 아파치 주키퍼
 
 - 컨피규레이션과 이름을 쥬이하는 중앙 서비스로의 분산 동기화, 그룹서비스를 가능하게함.
 - spring-cloud-starter-zookeepr-discovery를 사용
 
 
 
-### 기타 프로젝트
+## 기타 프로젝트
 
 - 쿠버네틱스 
   배포, 확장, 어플리케이션 컨테이너를 자동으로 관리하는 시스템.
@@ -288,7 +288,7 @@ Vault란? 토큰이나 패스워드, 자격 증명을 관리할 수 있는 해�
 
 
 
-### 메시징과 통합
+## 메시징과 통합
 
 - 스프링 클라우드 버스 : 컨피규레이션의 속성 변경이나 다른 명령등의 상태 변경을 이벤트로 어플리케이션에 알릴 수 있음.
 
@@ -300,13 +300,13 @@ Vault란? 토큰이나 패스워드, 자격 증명을 관리할 수 있는 해�
 
 
 
-### 다른 유용한 라이브러리
+## 다른 유용한 라이브러리
 
 - 보안 : spring-cloud-starter-security 를 통해서 싱글사인온, 토큰 리플레이와 같은 일반적인 패턴을 구현하는 시스템을 쉽게 개발 함.
 
 
 
-### 릴리즈 트레인
+## 릴리즈 트레인
 
 하위 프로젝트의 혼란을 피하기 위해서 릴리즈 이름이 아니라 런던 지하철 역의 이름으로 구분함.
 
@@ -326,7 +326,7 @@ dependencyManagement{
 
 
 
-### 요약
+## 요약
 
 각 서비스 디스커버리, 분산 설정, 서킷브레이커를 어떻게 사용할 수 있고 어떤 특징을 가지고 있는지 알아봄.
 
