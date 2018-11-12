@@ -335,6 +335,139 @@ dependencyManagement{
 
 # 04 서비스 디스커버리
 
+Euraka란? 넷플릭스에서 디스커버리 서버를 지칭하는 말.
+서버와 클라이언트로 구성되며, 서버는 주로 API의 수집과 등록을 담당하고 클라이언트는 서버의 등록, 해제 및 조회를 담당함.
+
+
+
+## 서버 측에서 유레카 서버실행하기
+
+- spring-cloud-starter-eureka-server 의존성 추가.
+- Main Application에 @EnableEurekaServer 추가.
+- 서버 스타터에는 클라이언트가 포함되어 있음으로, 분리를 위해서는 eureka.client.registerWithEureka와 eureka.client.fetchRegistry를 false로 지정한다.
+
+
+
+## 클라이언트 측에서 유레카 활성화하기
+
+- spring-cloud-starter-eureka 의존성 추가.
+- 자신을 등록하고 호스트, 포트, 상태 정보, 홈페이지 URL을 보내거나 서버로 부터 데이터를 가져와 캐싱하는 일을 담당.
+- @EnableDiscoveryClient(spring-common) 나 @EnalbeEurekaClient(netflix)로 활성화 시킴.
+- 어플리케이션의 이름은 spring.application.name 속성을 통해 등록이 가능함.
+
+
+
+## 종료 시 등록 해제
+
+- 어플리케이션의 중단은 Graceful하게 발생되어야 함.
+- 스프링 액추에이터의 /shutdown API를 사용함으로써 구현이 가능.
+- 하지만 실제로는 서버 머신이 재시작하거나 어플리케이션 장애, 네트워크 문제 등 많은 문제가 발새할 수 있음.
+- 이것을 피하기 위해 서버의 기본 설정을 변경해야함.  
+- Self-preservation mode는 자신의 서비스 상태를 갱신하지 않는 서비스가 일정 수를 넘으면 해제를 멈추는 것을 의미함. eureka.server.enableSelfPreservation속성의 값을 통해 비활성화가 가능함.
+
+
+
+## 프로그램 방식으로 디스커버리 클라이언트 사용하기
+
+DiscoveryClient 객체를 주입받아 해당 서버의 리스트를 가져올 수 있음.
+
+```java
+@Autowired
+private DiscoveryClient client;
+
+public List<ServiceInstance> ping() {
+    return client.getInstances("CLIENT_SERVICE");
+}
+```
+
+
+
+## 레지스트리 갱신하기
+
+1. Client
+
+- 모든 클라이언트는 30초 마다 서버에게 자신의 생존여부를 알리는 Heartbeat를 보냄.
+  eureka.instance.leaseRenealIntervalInSecond 속성으로 설정 가능.
+- 등록을 해제하여 트래픽을 전달하지 않도록 함.
+  eureka.instance.leaseExpirationdurationInSeconds 속성으로 설정 가능.
+
+2. Server
+
+ - 서버는 60초마다 Heartbeat가 수신되는지 확인.
+   즉, 임대를 만료하기까지 최악의 경우 60초까지 걸릴 수 있음.
+ - eureka.server.envictionIntervaltimerInMs 속성으로 설정 가능.
+
+
+
+## 인스턴스 식별자 변경하기
+
+인스턴스는 이름으로 묶임.
+
+다음의 방법을 통해 일련변호를 사용하도록 식별자를 변경할 수 있음.
+
+```yaml
+server:
+	port: 808${SEQUENCE_NO}
+eureka:
+	instance:
+		instanceId: ${spring.application.name}-${SEQUENCE_NO}
+```
+
+
+
+## IP 주소 우선하기
+
+기본적으로 모든 인스턴스는 호스트명으로 등록됨.
+
+유레카의 컨피규레이션 설정에서도 IP등록이 가능함. - eureka.instance.preferIpAddress를 true로 변경해야함.
+
+다만, 머신에 하나 이상의 네트워크 인터페이스가 존재하는 경우 문제가 발생할 수 있으니 주의가 필요함.
+
+이런 경우에는 제외 목록(spring.cloud.inetutils.ignoredInterfaces)이나 선호 목록(spring.cloud.inetutils.preferredNetworks)의 설정을 통해 관리가 가능함.
+
+
+
+## 응답 캐시
+
+1. 유레카 서버
+   유레카 서버는 기본적으로 응답을 30초 동안 캐싱함.
+   responseCacheUpdateIntervalMs 속성을 통해 캐시 시간을 설정할 수 있음.
+2. 유레카 클라이언트
+   유레카 클라이언트도 30초 동안 데이터를 캐싱함.
+   registryFetchIntervalSeconds 속성을 통해 캐시 시간을 설정할 수 있음.
+
+
+
+## 클라이언트와 서버 간의 보안 통신 사용하기
+
+보안을 설정하는것이 개발에는 중요하지 않지만, 보안이 부족하면 문제가 될 수 있음.
+
+스프링 클라우드 참조문서 에서는 "HTTP 기본 인증은 유레카 클라이언트에 자동으로 추가된다"고 했지만,
+
+실제로는 security 스타터를 추가하고, 보안 활성화 설정을 해야함.
+
+
+
+## 복제와 고가용성
+
+디스커버리 서버를 1대로 운영해도 되지만, 운영인 경우 장애 상황에 대비해 최소 2대의 운영이 필요.
+
+이런 경우 Peer To Peer 복제 모델에 기반하여 서로의 유레카 서버 사이의 통신을 함.
+
+따라서 하나의 인스턴스에 연결되었던 유레카 서버가 장애가 발생하여도, 다른 유레카 서버와의 연결을 통해 서비스가 정상적으로 작동될 수 있음.
+
+
+
+## 존(Zones)
+
+단일 디스커버리 인스턴스에서도 eureka.client.serviceUrl.defaultZone 설정을 해야함.
+
+
+
+## 요악
+
+유레카의 서버와 클라이언트 설정을 통해 넷플릭스의 디스커버리 서버를 어떻게 설정하고 운영할 수 있는지 알수 있음.
+
 
 
 05 스프링 클라우드 컨피그를 사용한 분산 컨피규레이션
