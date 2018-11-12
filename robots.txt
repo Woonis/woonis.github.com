@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 User-agent: BadBot
-Disallow: /categories, /year-archive
+Disallow: /categories, /year-archive, /google48b206f8b15d5736.html
 
 Sitemap: http://woonis.github.io/sitemap.xml
