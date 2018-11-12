@@ -67,13 +67,13 @@ algolia:
   search_only_api_key    : # YOUR_SEARCH_ONLY_API_KEY
   powered_by             : # true (default), false
 google:
-  search_engine_id       : # YOUR_SEARCH_ENGINE_ID
+  search_engine_id       : HPs_bFrgkO4oN3X2moCVKScTDffGItG-W9_swC22hKk"
   instant_search         : # false (default), true
 # SEO Related
 google_site_verification :
 bing_site_verification   :
 yandex_site_verification :
-naver_site_verification  :
+naver_site_verification  : ce8421c33150739537b14eb6800f1e2a009933e1
 
 # Social Sharing
 twitter:
