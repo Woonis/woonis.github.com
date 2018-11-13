@@ -473,7 +473,70 @@ eureka:
 
 
 
-05 스프링 클라우드 컨피그를 사용한 분산 컨피규레이션
+# 05 스프링 클라우드 컨피그를 사용한 분산 컨피규레이션
+
+기존에는 컨피규레이션을 JAR안에 포함해서 제공했기때문에, 컨피규레이션이 변경될 때마다 재빌드와 배포가 필요함.
+하지만 이를 spring.config.location속성을 통해 원격에서 가져올 수 있도록 쉽게 구성이 가능함.
+
+분산 컨피규레이션은 클라우드 네이티브 환경에서 가장 인기있는 표준 중 하나.
+
+## HTTP API 자원의 소개
+
+컨피규레이션을 가져오기위한 여러 API가 존재함.
+
+```
+/{application}/{profile}/{label}
+/{application}-{profile}.xml
+/{label}/{application}-{profile}.xml
+/{application}-{profile}.properties
+/{label}/{application}-{profile}.properties
+```
+
+- application : spring.application or config.name 으로 지정한 어플리케이션의 이름.
+- profile: 현재 활성화 중인 모드.
+- label: 옵셔널 밸류로써 git의 브랜치를 의미하며, default는 master브랜치.
+
+
+
+## 네이티브 프로파일 지원
+
+spring.profile.active옵션을 native로 하고 서버를 시작.
+
+서버는 classpath:/, classpath:/config, file:./, file:./config에서 컨피규레이션파일을 찾음.
+즉, yaml파일이 jar파일 안에 위치할 수 있음을 의미.
+
+컨피규레이션을 서버로 옮기기로 했다면 어플리케이션 이름을 주의할 것.
+어플리케이션 마다 주어질 설정 이름이 유일해야함.
+
+
+
+## 서버 측 어플리케이션 개발하기
+
+- spring-cloud-config-server 의존성 추가.
+- @EnalbeConfigServer 어노테이션 추가.
+- 기본 포트는 8888, client에서 접근하려는 포트도 8888이기 때문에 바꾸지 않는 것이 좋음.
+  바꾸려면 server.port의 값을 변경하거나 spring.config.name=configserver를 통해 해당 설정들을 configserver.yml에 오버라이드 할 수 있음.
+
+
+
+## 클라이언트 측 어플리케이션 개발하기
+
+- spring-cloud-starter-config 의존성 추가.
+- application.yml을 bootstrap.yml로 바꿈.
+- spring.profiles.active 옵션 값에 따라 해당하는 설정 파일을 가져올 수 있음.
+
+
+
+## 유레카 서버 추가하기
+
+클라이언트 속성에는 디스커버리 서비스의 내트워크 위치주소를 설정함.
+즉, 컨피규레이션 서버가 작동하기 전에 유레카 서버가 먼저 실행중이어야함.
+
+유레카는 서버가 시작할때 지정된 프로파일에 할당되는 컨피그를 컨피규레이션 서버로부터 가져옴.
+
+
+
+
 
 06 마이크로서비스 간의 커뮤니케이션
 
