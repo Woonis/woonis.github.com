@@ -1,7 +1,7 @@
 ---
 title: "Jekyll, Minimal Mistakes Theme Apply Guide"
 date: 2018-11-11 08:10:00 -0400
-categories: Minimal-Mistakes Guide Developer
+categories: Minimal-Mistakes Developer
 sitemap :
   changefreq : daily
   priority : 1.0
