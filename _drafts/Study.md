@@ -50,6 +50,17 @@ Collection Interface는 크게 Collection / Map의 큰 두가지의 자료 구�
 2. Set : 순서가 없는 저장 공간으로 중복을 허용하지 않음. ex) HashSet, SortedSet and so on.
 3. Map: Key-Value의 집합으로 이루어진 자료구조이며, 순서는 유지되지 않고 키는 중복을 허용하지 않지만 값의 경우는 중복을 허용한다. ex) HashMap, SortedMap and so on.
 
+### CQRS(Command and Query Responsibility Segregation)
+
+전통적인 CRUD 아키텍처에서 Application을 개발 및 운영하다보면, 자연스레 Domain Model의 복잡도가 증가함.
+이로인한 유지보수 비용이 늘어나고, 처음 설계와는 다르게 변질되기도 함.
+
+Application의 Business 정책이나 제약은 거의 C,U,D의 영향을 주고, R의 작업은 대부분 조회이므로 두 업무를 동일한 Domain Model로 처리하다보면 각 업무영역에 필요치 않은 도메인 정보들을 가지며 복잡도가 증가함.
+
+1. DB는 분리하지 않고, Modelrhk Command Query Model만 분리함.
+2. Command용과 Query용 디비를 분리하고, 이 두개의 디비를 동기화 함.
+3. 이벤트 소싱을 적용한 구조. 
+
 
 
 ### Final vs Enum
@@ -382,6 +393,7 @@ Interceptor :  DispatcherServlet으로 요청을 받은 후 컨트롤러의 전�
 메모리 사용에 이점. 데이터 공유의 개념.
 
 method : 클래스 객체를 생성하지 않고, 클래스 명으로 접근이 가능한 메소드를 생성함.
+
 variable : 클래스의 객체들이 공유하는 변수로 생성됨.
 
 ### String, String Buffer, StringBuilder
